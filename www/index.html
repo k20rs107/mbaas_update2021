@@ -19,7 +19,7 @@
       let named = $("#namedata").val();
       let value = parseInt($("#data").val());
       uTdata.set("name", named)
-        .set(key, value, named)
+        .set(key, value)
         .save()
         .then(function(results) {
           $("#display").removeClass();
@@ -36,10 +36,11 @@
     function fetchAll() {
       UTdata.fetchAll()
         .then(function(results) {
-          let msg = "";
+          let msg = "<table><tr><th>name</th><th>score</th></tr>";
           for (let i = 0; i < results.length; i++) {
-            msg += results[i].get(key) + "<br>";
+            msg +="<tr><td>" +results[i].get("name")+ "</td><td>" + results[i].get(key) + "</td></tr>";
           }
+          msg += "</table>";
           $("#display").removeClass();
           $("#display").addClass("text-light");
           $("#display").addClass("bg-primary");
@@ -143,7 +144,7 @@
     <a onclick="updateData()" class="btn btn-outline-secondary" role="button">Update</a>
     <input type="text" id="updateseek" placeholder="検索">
   </div>
-  <div id="display" class="text-light bg-info">
+  <div id="display" class="text-light .bg-info">
     Results
   </div>
 </body>
