@@ -16,8 +16,10 @@
 
     function enterData() {
       let uTdata = new UTdata();
+      let named = $("#namedata").val();
       let value = parseInt($("#data").val());
-      uTdata.set(key, value)
+      uTdata.set("name", named)
+        .set(key, value, named)
         .save()
         .then(function(results) {
           $("#display").removeClass();
