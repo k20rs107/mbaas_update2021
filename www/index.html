@@ -57,9 +57,9 @@
     function sortData() {
       UTdata.order(key, true).fetchAll()
         .then(function(results) {
-          let msg = "";
+          let msg = "<table><tr><th>name</th><th>score</th></tr>";
           for (let i = 0; i < results.length; i++) {
-            msg += results[i].get(key) + "<br>";
+            msg +="<tr><td>" +results[i].get("name")+ "</td><td>" + results[i].get(key) + "</td></tr>";
           }
           $("#display").removeClass();
           $("#display").addClass("text-light");
@@ -144,7 +144,7 @@
     <a onclick="updateData()" class="btn btn-outline-secondary" role="button">Update</a>
     <input type="text" id="updateseek" placeholder="検索">
   </div>
-  <div id="display" class="text-light .bg-info">
+  <div id="display" class="text-light bg-info">
     Results
   </div>
 </body>
