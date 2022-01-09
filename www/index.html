@@ -89,7 +89,8 @@
     }
 
     function deleteData() {
-      UTdata.fetch()
+      let named = $("#updateseek").val();
+      UTdata.equalTo("name", named).fetch()
         .then(function(results) {
           return results.delete();
       })
