@@ -125,6 +125,26 @@
         $("#display").html("update fail:"+JSON.stringify(error));
       })
     }
+
+    function updateName() {
+      let named = $("#updateNameseek").val();
+      UTdata.equalTo("name", named).fetch()
+      .then(function(results){
+        let value = $("#upname").val();
+        results.set("name", value);
+        return results.update();
+      })
+      .then(function(results){
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html("update success");
+      })
+      .catch(function(error){
+        $("#display").removeClass();
+        $("#display").addClass("bg-warning");
+        $("#display").html("update fail:"+JSON.stringify(error));
+      })
+    }
   </script>
 </head>
 
