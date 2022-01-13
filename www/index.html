@@ -106,6 +106,25 @@
       })
     }
 
+    function sumData() {
+      let TestDataClass=ncmb.DataStore(key);
+      UTdata.fetchAll()
+      .then(function(results){
+        let sum = 0;
+        for(let i = 0; i < results.length; i++){
+          sum += results[i].get(key);
+        }
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html("合計 "+ sum);
+      })
+      .catch(function(error){
+        $("#display").removeClass;
+        $("#display").addClass("bg-warning");
+        $("#display").html("count fail:"+JSON.stringify(error));
+      })
+    }
+
     function updateData() {
       let named = $("#updateseek").val();
       UTdata.equalTo("name", named).fetch()
@@ -156,13 +175,13 @@
     <input type="text" id="namedata" placeholder="名前">
   </div>
   <div>
-    <a onclick="fetchAll()" class="btn btn-outline-secondary" role="buton">Fetch All</a>
+    <a onclick="fetchAll()" class="btn btn-outline-secondary" role="button">Fetch All</a>
     <a onclick="sortData()" class="btn btn-outline-secondary" role="button">Sort</a>
     <a onclick="countData()" class="btn btn-outline-secondary" role="button">Count</a>
-    <a onclick="deleteData()" class="btn btn-outline-secondary" role="buton">Delete</a>
+    <a onclick="deleteData()" class="btn btn-outline-secondary" role="button">Delete</a>
   </div>
   <div>
-    <a onclick="sumData()" class="btn btn-outline-secondary" role="buton">Sum</a>
+    <a onclick="sumData()" class="btn btn-outline-secondary" role="button">Sum</a>
   </div>
   <div>
     <input type="text" id="update" placeholder="更新(点数)">
