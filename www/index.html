@@ -125,6 +125,27 @@
       })
     }
 
+    function averageData() {
+      let TestDataClass=ncmb.DataStore(key);
+      UTdata.fetchAll()
+      .then(function(results){
+        let average = 0;
+        for(let i = 0; i < results.length; i++){
+          average += results[i].get(key);
+        }
+        average /= results.length;
+        average = Math.round(average);
+        $("#display").removeClass();
+        $("#display").addClass("bg-success");
+        $("#display").html("平均 "+ average);
+      })
+      .catch(function(error){
+        $("#display").removeClass;
+        $("#display").addClass("bg-warning");
+        $("#display").html("count fail:"+JSON.stringify(error));
+      })
+    }
+
     function updateData() {
       let named = $("#updateseek").val();
       UTdata.equalTo("name", named).fetch()
